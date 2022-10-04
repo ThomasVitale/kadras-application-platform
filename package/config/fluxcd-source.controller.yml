@@ -1,0 +1,22 @@
+#@ load("@ytt:data", "data")
+#@ load("/helpers.star", "packages")
+
+#@ if packages.is_enabled("fluxcd-source-controller.packages.kadras.io"):
+
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: fluxcd-source-controller
+  namespace: #@ data.values.packages.namespace
+  annotations:
+    kapp.k14s.io/change-group: fluxcd
+    kapp.k14s.io/change-rule.serviceaccount: delete before deleting serviceaccount
+spec:
+  serviceAccountName: kadras-install-sa
+  packageRef:
+    refName: fluxcd-source-controller.packages.kadras.io
+    versionSelection:
+      constraints: 0.29.0
+
+#@ end

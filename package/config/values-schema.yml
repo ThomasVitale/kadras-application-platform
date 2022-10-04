@@ -1,0 +1,57 @@
+#@data/values-schema
+
+---
+
+#@schema/desc "Configuration for the platform packages"
+packages:
+  #@schema/desc "The namespace where to install the platform"
+  namespace: ""
+  #@schema/desc "A list of packages to exclude from being installed"
+  exclusions:
+    - ""
+
+#@schema/desc "Configuration for Cartographer related packages"
+cartographer:
+  #@schema/desc "Configuration for the Cartographer Blueprints package"
+  blueprints: {}
+  #@schema/desc "Configuration for the Cartographer Delivery package"
+  delivery: {}
+  #@schema/desc "Configuration for the Cartographer Golden Path Web package"
+  golden_path_web: {}
+
+#@schema/desc "Configuration for the Cert Manager package"
+cert_manager:
+  #@schema/desc "The namespace where to install of the Cert Manager package"
+  namespace: cert-manager
+
+#@schema/desc "Configuration for the Contour package"
+contour: {}
+
+#@schema/desc "Configuration for Cartographer Conventions related packages"
+conventions:
+  #@schema/desc "Configuration for the Spring Boot Conventions package"
+  spring_boot: {}
+
+#@schema/desc "Configuration for Knative related packages"
+knative:
+  #@schema/desc "Configuration for the Knative Serving package"
+  serving: {}
+
+#@schema/desc "Configuration for the Kpack package"
+kpack:
+  #@schema/desc "The OCI registry where to publish builder images."
+  kp_default_repository: ""
+
+#@schema/desc "Configuration for the Metrics Server package"
+metrics_server: {}
+
+#@schema/desc "Configuration for the Namespace Setup package"
+namespace_setup: {}
+
+#@schema/desc "Configuration for the Secretgen Controller package"
+secretgen_controller: {}
+
+#@schema/desc "Configuration for Tekton related packages"
+tekton:
+  #@schema/desc "Configuration for the Tekton Pipelines package"
+  pipelines: {}

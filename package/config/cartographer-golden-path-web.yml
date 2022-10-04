@@ -1,0 +1,37 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+#@ load("/helpers.star", "packages")
+
+#@ if packages.is_enabled("cartographer-golden-path-web.packages.kadras.io"):
+
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: cartographer-golden-path-web
+  namespace: #@ data.values.packages.namespace
+  annotations:
+    kapp.k14s.io/change-group: cartographer-golden-path-web
+    kapp.k14s.io/change-rule.cartographer: upsert after upserting cartographer
+    kapp.k14s.io/change-rule.cartographer-blueprints: upsert after upserting cartographer-blueprints
+    kapp.k14s.io/change-rule.service-account: delete before deleting serviceaccount
+spec:
+  serviceAccountName: kadras-install-sa
+  packageRef:
+    refName: cartographer-golden-path-web.packages.kadras.io
+    versionSelection:
+      constraints: 0.1.1
+      prereleases: {}
+  values:
+  - secretRef:
+      name: cartographer-golden-path-web-values
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cartographer-golden-path-web-values
+  namespace: #@ data.values.packages.namespace
+stringData:
+  values.yaml: #@ yaml.encode(data.values.cartographer.golden_path_web)
+
+#@ end

@@ -1,0 +1,36 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+#@ load("/helpers.star", "packages")
+
+#@ if packages.is_enabled("kpack-dependencies.packages.kadras.io"):
+
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: kpack-dependencies
+  namespace: #@ data.values.packages.namespace
+  annotations:
+    kapp.k14s.io/change-group: kpack-dependencies
+    kapp.k14s.io/change-rule.kpack-dependencies: upsert after upserting kpack
+    kapp.k14s.io/change-rule.service-account: delete before deleting serviceaccount  
+spec:
+  serviceAccountName: kadras-install-sa
+  packageRef:
+    refName: kpack-dependencies.packages.kadras.io
+    versionSelection:
+      constraints: 0.1.0
+      prereleases: {}
+  values:
+  - secretRef:
+      name: kpack-dependencies-values
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kpack-dependencies-values
+  namespace: #@ data.values.packages.namespace
+stringData:
+  values.yaml: #@ "kp_default_repository: " + data.values.kpack.kp_default_repository
+
+#@ end

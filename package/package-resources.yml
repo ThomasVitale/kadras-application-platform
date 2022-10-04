@@ -1,0 +1,164 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: application-platform.packages.kadras.io.0.0.0
+spec:
+  refName: application-platform.packages.kadras.io
+  releasedAt: null
+  template:
+    spec:
+      deploy:
+      - kapp: {}
+      fetch:
+      - git: {}
+      template:
+      - ytt:
+          paths:
+          - config
+      - kbld: {}
+  valuesSchema:
+    openAPIv3:
+      additionalProperties: false
+      properties:
+        packages:
+          type: object
+          additionalProperties: false
+          description: Configuration for the platform packages
+          properties:
+            namespace:
+              type: string
+              description: The namespace where to install the platform
+              default: ""
+            exclusions:
+              type: array
+              description: A list of packages to exclude from being installed
+              items:
+                type: string
+                default: ""
+              default: []
+        cartographer:
+          type: object
+          additionalProperties: false
+          description: Configuration for Cartographer related packages
+          properties:
+            blueprints:
+              type: object
+              additionalProperties: false
+              description: Configuration for the Cartographer Blueprints package
+              properties: {}
+            delivery:
+              type: object
+              additionalProperties: false
+              description: Configuration for the Cartographer Delivery package
+              properties: {}
+            golden_path_web:
+              type: object
+              additionalProperties: false
+              description: Configuration for the Cartographer Golden Path Web package
+              properties: {}
+        cert_manager:
+          type: object
+          additionalProperties: false
+          description: Configuration for the Cert Manager package
+          properties:
+            namespace:
+              type: string
+              description: The namespace where to install of the Cert Manager package
+              default: cert-manager
+        contour:
+          type: object
+          additionalProperties: false
+          description: Configuration for the Contour package
+          properties: {}
+        conventions:
+          type: object
+          additionalProperties: false
+          description: Configuration for Cartographer Conventions related packages
+          properties:
+            spring_boot:
+              type: object
+              additionalProperties: false
+              description: Configuration for the Spring Boot Conventions package
+              properties: {}
+        knative:
+          type: object
+          additionalProperties: false
+          description: Configuration for Knative related packages
+          properties:
+            serving:
+              type: object
+              additionalProperties: false
+              description: Configuration for the Knative Serving package
+              properties: {}
+        kpack:
+          type: object
+          additionalProperties: false
+          description: Configuration for the Kpack package
+          properties:
+            kp_default_repository:
+              type: string
+              description: The OCI registry where to publish builder images.
+              default: ""
+        metrics_server:
+          type: object
+          additionalProperties: false
+          description: Configuration for the Metrics Server package
+          properties: {}
+        namespace_setup:
+          type: object
+          additionalProperties: false
+          description: Configuration for the Namespace Setup package
+          properties: {}
+        secretgen_controller:
+          type: object
+          additionalProperties: false
+          description: Configuration for the Secretgen Controller package
+          properties: {}
+        tekton:
+          type: object
+          additionalProperties: false
+          description: Configuration for Tekton related packages
+          properties:
+            pipelines:
+              type: object
+              additionalProperties: false
+              description: Configuration for the Tekton Pipelines package
+              properties: {}
+  version: 0.0.0
+
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  creationTimestamp: null
+  name: application-platform.packages.kadras.io
+spec:
+  displayName: application-platform
+  longDescription: A curated set of Carvel packages to build an application platform or internal developer platform (IDP) on Kubernetes.
+  shortDescription: Application platform on Kubernetes.
+  categories:
+  - internal developer platform
+  - application platform
+  maintainers:
+  - name: Thomas Vitale
+  providerName: Arktonix
+
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    kctrl.carvel.dev/local-fetch-0: .
+  creationTimestamp: null
+  name: application-platform
+spec:
+  packageRef:
+    refName: application-platform.packages.kadras.io
+    versionSelection:
+      constraints: 0.0.0
+  serviceAccountName: kadras-install-sa
+status:
+  conditions: null
+  friendlyDescription: ""
+  observedGeneration: 0
