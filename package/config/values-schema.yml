@@ -1,4 +1,4 @@
-#@data/values
+#@data/values-schema
 
 ---
 
@@ -13,45 +13,57 @@ packages:
 #@schema/desc "Configuration for Cartographer related packages"
 cartographer:
   #@schema/desc "Configuration for the Cartographer Blueprints package"
+  #@schema/type any=True
   blueprints: {}
   #@schema/desc "Configuration for the Cartographer Delivery package"
+  #@schema/type any=True
   delivery: {}
   #@schema/desc "Configuration for the Cartographer Golden Path Web package"
+  #@schema/type any=True
   golden_path_web: {}
 
 #@schema/desc "Configuration for the Cert Manager package"
+#@schema/type any=True
 cert_manager:
   #@schema/desc "The namespace where to install of the Cert Manager package"
   namespace: cert-manager
 
 #@schema/desc "Configuration for the Contour package"
+#@schema/type any=True
 contour: {}
 
 #@schema/desc "Configuration for Cartographer Conventions related packages"
 conventions:
   #@schema/desc "Configuration for the Spring Boot Conventions package"
+  #@schema/type any=True
   spring_boot: {}
 
 #@schema/desc "Configuration for Knative related packages"
 knative:
   #@schema/desc "Configuration for the Knative Serving package"
+  #@schema/type any=True
   serving: {}
 
 #@schema/desc "Configuration for the Kpack package"
+#@schema/type any=True
 kpack:
   #@schema/desc "The OCI registry where to publish builder images."
   kp_default_repository: ""
 
 #@schema/desc "Configuration for the Metrics Server package"
+#@schema/type any=True
 metrics_server: {}
 
 #@schema/desc "Configuration for the Namespace Setup package"
+#@schema/type any=True
 namespace_setup: {}
 
 #@schema/desc "Configuration for the Secretgen Controller package"
+#@schema/type any=True
 secretgen_controller: {}
 
 #@schema/desc "Configuration for Tekton related packages"
 tekton:
   #@schema/desc "Configuration for the Tekton Pipelines package"
+  #@schema/type any=True
   pipelines: {}
