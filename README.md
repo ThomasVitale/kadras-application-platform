@@ -39,7 +39,7 @@ Either way, you can then install the Kadras Application Platform package using [
 ```shell
 kctrl package install -i application-platform \
     -p application-platform.packages.kadras.io \
-    -v 0.1.2 \
+    -v 0.2.0 \
     -n carvel-packages
 ```
 
@@ -89,8 +89,7 @@ cartographer:
   delivery: {}
   golden_path_web: {}
 
-cert_manager:
-  namespace: cert-manager
+cert_manager: {}
 
 contour: {}
 
@@ -117,20 +116,16 @@ Then, reference it from the `kctrl` command when installing or upgrading the pac
 ```shell
 kctrl package install -i application-platform \
     -p application-platform.packages.kadras.io \
-    -v 0.1.2 \
+    -v 0.2.0 \
     -n carvel-packages \
     --values-file values.yml
 ```
-
-## Documentation
-
-For documentation specific to Cartographer, check out [cartographer.sh](https://cartographer.sh).
 
 ## References
 
 This package is inspired by:
 
-* the [App Toolkit](https://github.com/vmware-tanzu/community-edition/tree/main/addons/packages/app-toolkit) package used in Tanzu Community Edition;
+* the App Toolkit package used in [Tanzu Community Edition](https://github.com/vmware-tanzu/community-edition) before its retirement;
 * the [OSS Stack](https://github.com/vrabbi/tap-oss) example of [Tanzu Application Platform](https://tanzu.vmware.com/application-platform).
 
 ## Supply Chain Security

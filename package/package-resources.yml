@@ -4,6 +4,8 @@ metadata:
   creationTimestamp: null
   name: application-platform.packages.kadras.io.0.0.0
 spec:
+  licenses:
+  - Apache 2.0
   refName: application-platform.packages.kadras.io
   releasedAt: null
   template:
@@ -19,6 +21,7 @@ spec:
       - kbld: {}
   valuesSchema:
     openAPIv3:
+      type: object
       additionalProperties: false
       properties:
         packages:
@@ -57,8 +60,7 @@ spec:
         cert_manager:
           nullable: true
           description: Configuration for the Cert Manager package
-          default:
-            namespace: cert-manager
+          default: {}
         contour:
           nullable: true
           description: Configuration for the Contour package

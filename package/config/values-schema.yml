@@ -24,9 +24,7 @@ cartographer:
 
 #@schema/desc "Configuration for the Cert Manager package"
 #@schema/type any=True
-cert_manager:
-  #@schema/desc "The namespace where to install of the Cert Manager package"
-  namespace: cert-manager
+cert_manager: {}
 
 #@schema/desc "Configuration for the Contour package"
 #@schema/type any=True
