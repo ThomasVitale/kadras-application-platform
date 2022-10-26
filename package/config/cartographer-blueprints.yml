@@ -20,7 +20,7 @@ spec:
   packageRef:
     refName: cartographer-blueprints.packages.kadras.io
     versionSelection:
-      constraints: 0.1.3
+      constraints: 0.2.0
       prereleases: {}
   values:
   - secretRef:
