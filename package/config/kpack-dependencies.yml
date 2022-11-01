@@ -19,7 +19,7 @@ spec:
   packageRef:
     refName: kpack-dependencies.packages.kadras.io
     versionSelection:
-      constraints: 0.2.0
+      constraints: 0.3.0
       prereleases: {}
   values:
   - secretRef:

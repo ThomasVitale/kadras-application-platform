@@ -1,23 +1,13 @@
 name: Test
+
 on:
   - push
 
 jobs:
-  check-config:
-    name: Check Configuration
-    runs-on: ubuntu-22.04
+  test-config:
+    name: Configuration Tests
     permissions:
       contents: read
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3.1.0
-
-      - name: Set up Carvel
-        uses: vmware-tanzu/carvel-setup-action@v1.1.1
-        with:
-          only: ytt
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check configuration
-        run: |
-          make check
+    uses: arktonix/cloud-native-utils/.github/workflows/package-test-config.yml@main
+    with:
+      command: make test-config
