@@ -28,8 +28,8 @@ If you don't want to use the Kadras package repository, you can create the neces
 `Package` resources for the Kadras Application Platform package directly.
 
 ```shell
-kubectl create namespace carvel-packages
-kapp deploy -a application-platform-package -n carvel-packages -y \
+kubectl create namespace kadras-packages
+kapp deploy -a application-platform-package -n kadras-packages -y \
     -f https://github.com/arktonix/application-platform/releases/latest/download/metadata.yml \
     -f https://github.com/arktonix/application-platform/releases/latest/download/package.yml
 ```
@@ -39,8 +39,8 @@ Either way, you can then install the Kadras Application Platform package using [
 ```shell
 kctrl package install -i application-platform \
     -p application-platform.packages.kadras.io \
-    -v 0.2.2 \
-    -n carvel-packages
+    -v 0.3.0 \
+    -n kadras-packages
 ```
 
 You can retrieve the list of available versions with the following command.
@@ -52,7 +52,7 @@ kctrl package available list -p application-platform.packages.kadras.io
 You can check the list of installed packages and their status as follows.
 
 ```shell
-kctrl package installed list -n carvel-packages
+kctrl package installed list -n kadras-packages
 ```
 
 ## Configuration
@@ -116,8 +116,8 @@ Then, reference it from the `kctrl` command when installing or upgrading the pac
 ```shell
 kctrl package install -i application-platform \
     -p application-platform.packages.kadras.io \
-    -v 0.2.2 \
-    -n carvel-packages \
+    -v 0.3.0 \
+    -n kadras-packages \
     --values-file values.yml
 ```
 
