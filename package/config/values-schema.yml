@@ -18,9 +18,9 @@ cartographer:
   #@schema/desc "Configuration for the Cartographer Delivery package"
   #@schema/type any=True
   delivery: {}
-  #@schema/desc "Configuration for the Cartographer Golden Path Web package"
+  #@schema/desc "Configuration for the Cartographer Supply Chains package"
   #@schema/type any=True
-  golden_path_web: {}
+  supply_chains: {}
 
 #@schema/desc "Configuration for the Cert Manager package"
 #@schema/type any=True
