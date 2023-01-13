@@ -19,7 +19,7 @@ spec:
   packageRef:
     refName: spring-boot-conventions.packages.kadras.io
     versionSelection:
-      constraints: 0.1.0
+      constraints: 0.1.3
   values:
     - secretRef:
         name: spring-boot-conventions-values

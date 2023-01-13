@@ -126,7 +126,7 @@ spec:
   - application platform
   maintainers:
   - name: Thomas Vitale
-  providerName: Arktonix
+  providerName: Kadras
 
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
