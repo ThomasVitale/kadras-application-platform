@@ -31,7 +31,7 @@ Then, install the Kadras Application Platform package.
   ```shell
   kctrl package install -i application-platform \
     -p application-platform.packages.kadras.io \
-    -v 0.5.2 \
+    -v 0.5.3 \
     -n kadras-packages
   ```
 
@@ -112,7 +112,7 @@ Then, reference it from the `kctrl` command when installing or upgrading the pac
   ```shell
   kctrl package install -i application-platform \
     -p application-platform.packages.kadras.io \
-    -v 0.5.2 \
+    -v 0.5.3 \
     -n kadras-packages \
     --values-file values.yml
   ```

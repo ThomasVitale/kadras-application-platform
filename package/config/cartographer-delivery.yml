@@ -20,7 +20,7 @@ spec:
   packageRef:
     refName: cartographer-delivery.packages.kadras.io
     versionSelection:
-      constraints: 0.2.1
+      constraints: 0.2.2
       prereleases: {}
   values:
   - secretRef:
