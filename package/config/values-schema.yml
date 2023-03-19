@@ -2,66 +2,68 @@
 
 ---
 
-#@schema/desc "Configuration for the platform packages"
+#@schema/desc "Configuration for the platform packages."
 packages:
-  #@schema/desc "The namespace where to install the platform"
+  #@schema/desc "The namespace where to install the platform."
   namespace: ""
-  #@schema/desc "A list of packages to exclude from being installed"
+  #@schema/desc "A list of packages to exclude from being installed."
   exclusions:
     - ""
 
-#@schema/desc "Configuration for Cartographer related packages"
+#@schema/desc "Configuration for Cartographer related packages."
 cartographer:
-  #@schema/desc "Configuration for the Cartographer Blueprints package"
+  #@schema/desc "Configuration for the Cartographer Blueprints package."
   #@schema/type any=True
   blueprints: {}
-  #@schema/desc "Configuration for the Cartographer Delivery package"
+  #@schema/desc "Configuration for the Cartographer Delivery package."
   #@schema/type any=True
   delivery: {}
-  #@schema/desc "Configuration for the Cartographer Supply Chains package"
+  #@schema/desc "Configuration for the Cartographer Supply Chains package."
   #@schema/type any=True
   supply_chains: {}
 
-#@schema/desc "Configuration for the Cert Manager package"
+#@schema/desc "Configuration for the Cert Manager package."
 #@schema/type any=True
 cert_manager: {}
 
-#@schema/desc "Configuration for the Contour package"
+#@schema/desc "Configuration for the Contour package."
 #@schema/type any=True
 contour: {}
 
-#@schema/desc "Configuration for Cartographer Conventions related packages"
+#@schema/desc "Configuration for Cartographer Conventions related packages."
 conventions:
-  #@schema/desc "Configuration for the Spring Boot Conventions package"
+  #@schema/desc "Configuration for the Spring Boot Conventions package."
   #@schema/type any=True
   spring_boot: {}
 
-#@schema/desc "Configuration for Knative related packages"
+#@schema/desc "Configuration for Knative related packages."
 knative:
-  #@schema/desc "Configuration for the Knative Serving package"
+  #@schema/desc "Configuration for the Knative Serving package."
   #@schema/type any=True
   serving: {}
 
-#@schema/desc "Configuration for the Kpack package"
+#@schema/desc "Configuration for the Kpack package."
 #@schema/type any=True
-kpack:
-  #@schema/desc "The OCI registry where to publish builder images."
-  kp_default_repository: ""
+kpack: {}
 
-#@schema/desc "Configuration for the Metrics Server package"
+#@schema/desc "Configuration for the Kpack Dependencies package."
+#@schema/type any=True
+kpack_dependencies: {}
+
+#@schema/desc "Configuration for the Metrics Server package."
 #@schema/type any=True
 metrics_server: {}
 
-#@schema/desc "Configuration for the Namespace Setup package"
+#@schema/desc "Configuration for the Namespace Setup package."
 #@schema/type any=True
 namespace_setup: {}
 
-#@schema/desc "Configuration for the Secretgen Controller package"
+#@schema/desc "Configuration for the Secretgen Controller package."
 #@schema/type any=True
 secretgen_controller: {}
 
-#@schema/desc "Configuration for Tekton related packages"
+#@schema/desc "Configuration for Tekton related packages."
 tekton:
-  #@schema/desc "Configuration for the Tekton Pipelines package"
+  #@schema/desc "Configuration for the Tekton Pipelines package."
   #@schema/type any=True
   pipelines: {}
