@@ -106,6 +106,7 @@ The Kadras Application Platform package has the following configurable propertie
 | `conventions.spring_boot` | `{}` | Configuration for the Spring Boot Conventions package. |
 | `knative.serving` | `{}` | Configuration for the Knative Serving package. |
 | `kpack` | `{}` | Configuration for the Kpack package. |
+| `kpack_dependencies` | `{}` | Configuration for the Kpack Dependencies package. |
 | `metrics_server` | `{}` | Configuration for the Metrics Server package. |
 | `namespace_setup` | `{}` | Configuration for the Namespace Setup package. |
 | `secretgen_controller` | `{}` | Configuration for the Secretgen Controller package. |
