@@ -1,10 +1,16 @@
 # Kadras Application Platform
 
-<a href="https://slsa.dev/spec/v0.1/levels"><img src="https://slsa.dev/images/gh-badge-level3.svg" alt="The SLSA Level 3 badge"></a>
+![Test Workflow](https://github.com/kadras-io/kadras-application-platform/actions/workflows/test.yml/badge.svg)
+![Release Workflow](https://github.com/kadras-io/kadras-application-platform/actions/workflows/release.yml/badge.svg)
+[![The SLSA Level 3 badge](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev/spec/v0.1/levels)
+[![The Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Follow us on Twitter](https://img.shields.io/static/v1?label=Twitter&message=Follow&color=1DA1F2)](https://twitter.com/kadrasIO)
 
-This project provides a curated set of [Carvel packages](https://carvel.dev/kapp-controller/docs/latest/packaging) to build an application platform or internal developer platform (IDP) on Kubernetes. 
+A curated set of Carvel packages to build an engineering platform supporting application developers with paved paths to production on Kubernetes.
 
-## Prerequisites
+## 🚀&nbsp; Getting Started
+
+### Prerequisites
 
 * Kubernetes 1.24+
 * Carvel [`kctrl`](https://carvel.dev/kapp-controller/docs/latest/install/#installing-kapp-controller-cli-kctrl) CLI.
@@ -12,48 +18,81 @@ This project provides a curated set of [Carvel packages](https://carvel.dev/kapp
 
   ```shell
   kapp deploy -a kapp-controller -y \
-    -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+    -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml
   ```
 
-## Installation
+### Installation
 
-First, add the [Kadras package repository](https://github.com/kadras-io/kadras-packages) to your Kubernetes cluster.
+Add the Kadras [package repository](https://github.com/kadras-io/kadras-packages) to your Kubernetes cluster:
 
   ```shell
   kubectl create namespace kadras-packages
-  kctrl package repository add -r kadras-repo \
+  kctrl package repository add -r kadras-packages \
     --url ghcr.io/kadras-io/kadras-packages \
     -n kadras-packages
   ```
 
-Then, install the Kadras Application Platform package.
+<details><summary>Installation without package repository</summary>
+The recommended way of installing the Kadras Application Platform package is via the Kadras <a href="https://github.com/kadras-io/kadras-packages">package repository</a>. If you prefer not using the repository, you can add the package definition directly using <a href="https://carvel.dev/kapp/docs/latest/install"><code>kapp</code></a> or <code>kubectl</code>.
+
+  ```shell
+  kubectl create namespace kadras-packages
+  kapp deploy -a application-platform-package -n kadras-packages -y \
+    -f https://github.com/kadras-io/kadras-application-platform/releases/latest/download/metadata.yml \
+    -f https://github.com/kadras-io/kadras-application-platform/releases/latest/download/package.yml
+  ```
+</details>
+
+Install the Kadras Application Platform package:
 
   ```shell
   kctrl package install -i application-platform \
     -p application-platform.packages.kadras.io \
-    -v 0.5.3 \
+    -v ${VERSION} \
     -n kadras-packages
   ```
 
-### Verification
+> **Note**
+> You can find the `${VERSION}` value by retrieving the list of package versions available in the Kadras package repository installed on your cluster.
+> 
+>   ```shell
+>   kctrl package available list -p application-platform.packages.kadras.io -n kadras-packages
+>   ```
 
-You can verify the list of installed Carvel packages and their status.
+Verify the installed packages and their status:
 
   ```shell
   kctrl package installed list -n kadras-packages
   ```
 
-### Version
+## 📙&nbsp; Documentation
 
-You can get the list of Kadras Application Platform versions available in the Kadras package repository.
+Documentation, tutorials and examples for this package are available in the [docs](docs) folder.
 
-  ```shell
-  kctrl package available list -p application-platform.packages.kadras.io -n kadras-packages
+## 🎯&nbsp; Configuration
+
+The Kadras Application Platform package can be customized via a `values.yml` file.
+
+  ```yaml
+  excluded_blueprints:
+    - "config-template"
   ```
 
-## Configuration
+Reference the `values.yml` file from the `kctrl` command when installing or upgrading the package.
+
+  ```shell
+  kctrl package install -i application-platform \
+    -p application-platform.packages.kadras.io \
+    -v ${VERSION} \
+    -n kadras-packages \
+    --values-file values.yml
+  ```
+
+### Values
 
 The Kadras Application Platform package has the following configurable properties.
+
+<details><summary>Configurable properties</summary>
 
 | Config | Default | Description |
 |-------|-------------------|-------------|
@@ -72,89 +111,19 @@ The Kadras Application Platform package has the following configurable propertie
 | `secretgen_controller` | `{}` | Configuration for the Secretgen Controller package. |
 | `tekton.pipelines` | `{}` | Configuration for the Tekton Pipelines package. |
 
-You can define your configuration in a `values.yml` file.
+</details>
 
-  ```yaml
-  packages:
-    namespace: ""
-    exclusions:
-      - ""
+## 🛡️&nbsp; Security
 
-  cartographer:
-    blueprints: {}
-    delivery: {}
-    supply_chains: {}
+The security process for reporting vulnerabilities is described in [SECURITY.md](SECURITY.md).
 
-  cert_manager: {}
+## 🖊️&nbsp; License
 
-  contour: {}
+This project is licensed under the **Apache License 2.0**. See [LICENSE](LICENSE) for more information.
 
-  conventions:
-    spring_boot: {}
-
-  knative:
-    serving: {}
-
-  kpack: {}
-
-  metrics_server: {}
-
-  namespace_setup: {}
-
-  secretgen_controller: {}
-
-  tekton:
-    pipelines: {}
-  ```
-
-Then, reference it from the `kctrl` command when installing or upgrading the package.
-
-  ```shell
-  kctrl package install -i application-platform \
-    -p application-platform.packages.kadras.io \
-    -v 0.5.3 \
-    -n kadras-packages \
-    --values-file values.yml
-  ```
-
-## Upgrading
-
-You can upgrade an existing package to a newer version using `kctrl`.
-
-  ```shell
-  kctrl package installed update -i application-platform \
-    -v <new-version> \
-    -n kadras-packages
-  ```
-
-You can also update an existing package with a newer `values.yml` file.
-
-  ```shell
-  kctrl package installed update -i application-platform\
-    -n kadras-packages \
-    --values-file values.yml
-  ```
-
-## Other
-
-The recommended way of installing the Kadras Application Platform package is via the [Kadras package repository](https://github.com/kadras-io/kadras-packages). If you prefer not using the repository, you can install the package by creating the necessary Carvel `PackageMetadata` and `Package` resources directly using [`kapp`](https://carvel.dev/kapp/docs/latest/install) or `kubectl`.
-
-  ```shell
-  kubectl create namespace kadras-packages
-  kapp deploy -a application-platform-package -n kadras-packages -y \
-    -f https://github.com/kadras-io/application-platform/releases/latest/download/metadata.yml \
-    -f https://github.com/kadras-io/application-platform/releases/latest/download/package.yml
-  ```
-
-## References
+## 🙏&nbsp; Acknowledgments
 
 This package is inspired by:
 
 * the App Toolkit package used in [Tanzu Community Edition](https://github.com/vmware-tanzu/community-edition) before its retirement;
 * the [OSS Stack](https://github.com/vrabbi/tap-oss) example of [Tanzu Application Platform](https://tanzu.vmware.com/application-platform).
-
-## Supply Chain Security
-
-This project is compliant with level 3 of the [SLSA Framework](https://slsa.dev).
-
-<img src="https://slsa.dev/images/SLSA-Badge-full-level3.svg" alt="The SLSA Level 3 badge" width=200>

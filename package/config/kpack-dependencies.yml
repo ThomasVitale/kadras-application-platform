@@ -19,7 +19,7 @@ spec:
   packageRef:
     refName: kpack-dependencies.packages.kadras.io
     versionSelection:
-      constraints: 0.3.3
+      constraints: 0.4.3
       prereleases: {}
   values:
   - secretRef:
@@ -31,6 +31,6 @@ metadata:
   name: kpack-dependencies-values
   namespace: #@ data.values.packages.namespace
 stringData:
-  values.yaml: #@ "kp_default_repository: " + data.values.kpack.kp_default_repository
+  values.yaml: #@ yaml.encode(data.values.kpack_dependencies)
 
 #@ end
